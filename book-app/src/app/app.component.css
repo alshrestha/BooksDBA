@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+header {
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    height: 69px;
+    background-color: black;
+    border-bottom: 1px solid seashell;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+     color: seashell;
+     
+  }
+
+  .flex-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  header img {
+    height: 50px;
+    margin-left: 10px;
+  }
+
+  nav {
+    height: 69px;
+    text-align: right;
+    flex-grow: 1;
+    border-bottom: 1px solid seashell;
+  }
+  
+  nav span {
+    display: inline-block;
+    padding: 20px 10px;
+  }
+  
+  .seashell {color: seashell;}

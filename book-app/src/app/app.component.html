@@ -1,0 +1,32 @@
+ <header class="flex-container" *ngIf="authService.isAuthenticated()">
+    <img src="" />
+    <nav>
+      <span><a href="/home">Home</a></span>
+      <span style="color: seashell"><a  href="/add">Add</a></span>
+      <span><button type="button" class="btn btn-blue-grey seashell" (click)= "authService.logout()">Logout</button></span>
+    </nav>
+  </header>
+  <router-outlet></router-outlet>
+
+
+
+<!-- <div id="wrapper" class="animate">
+    <nav class="navbar header-top fixed-top navbar-expand-lg navbar-dark bg-dark" *ngIf="authService.isAuthenticated()">
+      <span class="navbar-toggler-icon leftmenutrigger"></span>
+     
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav ml-md-auto d-md-flex" >
+          <li class="nav-item">
+            <a class="nav-link" href="/add"><i class="fas fa-user"></i> Add</a>
+          </li>
+          <li class="nav-item">
+            <button class="logout btn btn-default" (click)="authService.logout()"><i class="fas fa-key"></i> Logout</button>
+          </li>
+        </ul>
+      </div>
+    </nav> -->
+

@@ -1,0 +1,17 @@
+<div class = "container">
+	<div class="wrapper">
+		<form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()" >       
+		    <h3 class="form-signin-heading">Please Sign In</h3>
+			  <hr class="colorgraph"><br>
+			  
+			  <input type="text" class="form-control" [formControlName]="'userName'" name="Username" placeholder="Username" required="" autofocus="" />
+			  <input type="password" class="form-control" [formControlName]="'password'" name="Password" placeholder="Password" required=""/>     		  
+			 
+        <button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="Submit">Login</button>  		
+        <p>
+           <a href="/register" class="register btn btn-default">Register </a>
+      </p>	
+		</form>			
+	</div>
+</div>
+   
