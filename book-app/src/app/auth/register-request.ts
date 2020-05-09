@@ -1,4 +1,4 @@
-export class RegisterRequest {
+export interface RegisterRequest {
     firstName: String;
     lastName: String;
     userName: string;

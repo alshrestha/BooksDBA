@@ -1,4 +1,4 @@
-export class Book {
+export interface Book {
     title: string;
     isbn: string;
     thumbnailUrl: string;

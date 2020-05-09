@@ -1,7 +1,7 @@
 import { AddBookService } from './../../add-book.service';
 import { Router } from '@angular/router';
 import { Book } from './book';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -12,37 +12,23 @@ import { Component, OnInit } from '@angular/core';
 export class AddBookComponent implements OnInit {
   addBookForm: FormGroup;
   book: Book;
+  authors: FormArray;
 
-  title = new FormControl('');
-  isbn = new FormControl('');
-  thumbnailUrl = new FormControl('');
-  shortDescription = new FormControl('');
-  longDescription = new FormControl('');
-  authors = new FormControl([]);
-  categories = new FormControl([]);
+  constructor(private addBookService: AddBookService, private router: Router, private formBuilder: FormBuilder) {
+    
+      }
 
-  constructor(private addBookService: AddBookService, private router: Router) {
-    this.addBookForm = new FormGroup({
-      title: this.title,
-      isbn: this.isbn,
-      thumbnailUrl: this.thumbnailUrl,
-      shortDescription: this.shortDescription,
-      longDescription: this.longDescription,
-      authors: this.authors,
-      categories: this.categories,
-    });
-    this.book = {
+  ngOnInit(): void {
+    this.addBookForm = this.formBuilder.group({
       title: '',
       isbn: '',
       thumbnailUrl: '',
       shortDescription: '',
       longDescription: '',
-      authors: [],
-      categories: [],
-    };
+      authors: this.formBuilder.array([]),
+      categories: this.formBuilder.array([]),
+    });
   }
-
-  ngOnInit(): void {}
 
   addBook() {
     this.book.title = this.addBookForm.get('title').value;
@@ -53,6 +39,8 @@ export class AddBookComponent implements OnInit {
     this.book.authors = this.addBookForm.get('authors').value;
     this.book.categories = this.addBookForm.get('categories').value;
 
+    //this.book = this.addBookForm.getRawValue();
+
     this.addBookService.addBook(this.book).subscribe(
       (data) => {
         this.router.navigateByUrl('/home');
@@ -62,5 +50,42 @@ export class AddBookComponent implements OnInit {
       }
     );
   }
+
+  // get authorForms(){
+  //   return this.addBookForm.get('authors') as FormArray;
+  // }
+
+  addAuthor(){
+    let author = this.formBuilder.group({
+      book: ''
+
+    });
+
+
+    this.authors = this.addBookForm.get('authors') as FormArray;
+    this.authors.push(author);
+    console.log("Error");
+  }
+
+  deleteAuthor(index: number){
+    //this.authorForms.removeAt(index);
+  }
+
+  get categoryForms(){
+    return this.addBookForm.get('categories') as FormArray;
+  }
+
+  addCategory(){
+    let category = this.formBuilder.group({
+      categories: []
+    });
+
+    this.categoryForms.push(category);
+  }
+
+  deleteCategory(index: number){
+    this.categoryForms.removeAt(index);
+  }
+
 
 }

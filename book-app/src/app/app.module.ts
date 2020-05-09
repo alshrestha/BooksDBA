@@ -17,15 +17,6 @@ import { AddBookComponent } from './auth/add-book/add-book.component';
 import { HttpClientInterceptor } from './auth/httpClient-interceptor';
 import { BookDetailComponent } from './auth/book-detail/book-detail.component';
 
-const routes:Routes = [
-        { path:'register', component: RegisterComponent},
-        { path:'register-success', component: RegisterSuccessComponent, canActivate: [AuthGuard]},
-        { path:'login', component: LoginComponent},
-        { path:'home', component: HomeComponent, canActivate: [AuthGuard]},
-        { path: 'add', component: AddBookComponent, canActivate: [AuthGuard]},
-        { path: 'details/:isbn', component: BookDetailComponent, canActivate: [AuthGuard]},
-        { path:'', redirectTo: 'home', pathMatch: 'full', canActivate: [AuthGuard]}
-]
 
 @NgModule({
   declarations: [
@@ -43,8 +34,7 @@ const routes:Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxWebstorageModule.forRoot(),
-    RouterModule.forRoot(routes)
+    RouterModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: HttpClientInterceptor, multi: true}],
   bootstrap: [AppComponent]

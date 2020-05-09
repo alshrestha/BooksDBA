@@ -13,20 +13,20 @@ export class AddBookService {
   constructor(private http: HttpClient) { }
 
   addBook(book: Book){
-    return this.http.post("http://localhost:8080/books/add", book);
+    return this.http.post('http://localhost:8080/books/add', book);
    }
 
    getAllBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>("http://localhost:8080/books/all")
-            .pipe(map(response => {return response;}));
+    return this.http.get<Book[]>('http://localhost:8080/books/all')
+            .pipe(map(response => response));
 
    }
 
-   getBookDetail(isbn: string):Observable<Book> {
+   getBookDetail(isbn: string): Observable<Book> {
 
-    return this.http.get<Book>("http://localhost:8080/books/" + isbn);
-                      
+    return this.http.get<Book>('http://localhost:8080/books/' + isbn);
 
 
-   }  
+
+   }
 }

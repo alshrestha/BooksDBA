@@ -1,50 +1,108 @@
 <div class="container">
-    <div class="row">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h1>Add New Book</h1>
 
-        <div class="col-md-8 col-md-offset-2">
+      <form formGroup="addBookForm">
+        <div class="form-group">
+          <label for="title">Title </label>
+          <input
+            type="text"
+            id="title"
+            formControlName="'title'"
+            class="form-control"
+            name="title"
+          />
+        </div>
+        <div class="form-group">
+          <label for="isbn">ISBN </label>
+          <input
+            type="text"
+            id="isbn"
+            formControlName="'isbn'"
+            class="form-control"
+            name="isbn"
+          />
+        </div>
+        <div formArrayName="authors">
+          <div 
+            *ngFor="let author of authors.controls; let i = index"
+            [formGroupName]="i"
+          >
+            <label for="author">Author </label>
+            <input
+              type="text"
+              id="author"
+              formControlName="book"
+              class="form-control"
+              name="author"
+            />
 
-            <h1>Add New Book</h1>
-
-            <form [formGroup]="addBookForm" (ngSubmit)="addBook()">
-
-                <div class="form-group">
-                    <label for="title">Title <span class="require">*</span></label>
-                    <input type="text" id="title" [formControlName]="'title'" class="form-control" name="title" />
-                </div>
-                <div class="form-group">
-                    <label for="isbn">ISBN <span class="require">*</span></label>
-                    <input type="text" id="isbn" [formControlName]="'isbn'" class="form-control" name="isbn" />
-                </div>
-                <div class="form-group">
-                    <label for="author">Author <span class="require">*</span></label>
-                    <input type="text" id="author" [formControlName]="'author'" class="form-control" name="author" />
-                </div>
-                <div class="form-group">
-                    <label for="imageUrl">Image URL </label>
-                    <input type="text" id="imageUrl" [formControlName]="'thumbnailUrl'" class="form-control" name="imageUrl" />
-                </div>
-                <div class="form-group">
-                    <label for="category">Category</label>
-                    <input type="text" id="category" [formControlName]="'category'" class="form-control" name="category" />
-                </div>
-                <div class="form-group">
-                    <label for="shortDescription">Short Description</label>
-                    <textarea rows="3" id="shortDescription" [formControlName]="'shortDescription'" class="form-control" name="shortDescription"></textarea>
-                </div>
-    		    <div class="form-group">
-                    <label for="longDescription">Big Description</label>
-                    <textarea rows="10" id="longDescription" [formControlName]="'longDescription'" class="form-control" name="longDescription" ></textarea>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">
-                        Add
-                    </button>
-                    <button class="btn btn-default">
-                        Cancel
-                    </button>
-                </div>
-            </form>
+            <button class="btn btn-danger" (click)="deleteAuthor(i)">
+              Delete
+            </button>
+          </div>
+          <button class="btn btn-primary" (click)="addAuthor()">Add</button>
         </div>
 
+        <div class="form-group">
+          <label for="thumbnailUrl">Image URL </label>
+          <input
+            type="text"
+            id="thumbnailUrl"
+            formControlName="thumbnailUrl"
+            class="form-control"
+            name="thumbnailUrl"
+          />
+        </div>
+        <div [formArrayName]="'categories'">
+          <div
+            *ngFor="let author of categoryForms.controls; let i = index"
+            [formGroupName]="i"
+          >
+            <label for="categories">Author </label>
+            <input
+              type="text"
+              id="categories"
+              formControlName="categories"
+              class="form-control"
+              name="categories"
+            />
+
+            <button class="btn btn-danger" (click)="deleteCategory(i)">
+              Delete
+            </button>
+          </div>
+          <button class="btn btn-primary" (click)="addCategory()">Add</button>
+        </div>
+        <div class="form-group">
+          <label for="shortDescription">Short Description</label>
+          <textarea
+            rows="3"
+            id="shortDescription"
+            formControlName="shortDescription"
+            class="form-control"
+            name="shortDescription"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="longDescription">Big Description</label>
+          <textarea
+            rows="8"
+            id="longDescription"
+            formControlName="longDescription"
+            class="form-control"
+            name="longDescription"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary" (click)="addBook()">
+            Add
+          </button>
+
+          <a href="/home" class="btn btn-danger">Cancel</a>
+        </div>
+      </form>
     </div>
+  </div>
 </div>

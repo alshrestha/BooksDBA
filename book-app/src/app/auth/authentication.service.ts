@@ -3,9 +3,8 @@ import { JwtAuthResponse } from './JwtAuthResponse';
 import { LoginRequest } from './login-request';
 import { RegisterRequest } from './register-request';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LocalStorageService } from 'ngx-webstorage';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -13,24 +12,24 @@ import { map } from 'rxjs/operators';
 })
 export class AuthenticationService {
 
-  readonly url = "http://localhost:8080/";
+  readonly url = 'http://localhost:8080/';
 
   constructor(private httpCLient: HttpClient, private router: Router) { }
 
   login(loginRequest: LoginRequest): Observable<boolean>{
 
-    return this.httpCLient.post<JwtAuthResponse>(this.url + "login", loginRequest).pipe(map(data => {
-  
+    return this.httpCLient.post<JwtAuthResponse>(this.url + 'login', loginRequest).pipe(map(data => {
+
        localStorage.setItem('authenticationToken', data.authenticationToken);
-        localStorage.setItem('username', data.username);
-        return true;
-      }))
-  
+       localStorage.setItem('username', data.username);
+       return true;
+      }));
+
     }
 
   register(registerRequest: RegisterRequest): Observable<any>{
 
-    return this.httpCLient.post(this.url + "register", registerRequest);
+    return this.httpCLient.post(this.url + 'register', registerRequest);
   }
 
   isAuthenticated() {
@@ -42,9 +41,9 @@ export class AuthenticationService {
     localStorage.removeItem('username');
     this.router.navigateByUrl('login');
 
-    
+
   }
 
-  
+
 
 }

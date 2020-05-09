@@ -29,8 +29,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 getAuthorities("ROLE_USER"));*/
     }
 
-    private Collection<? extends GrantedAuthority> getAuthorities(String role_user) {
+   /* private Collection<? extends GrantedAuthority> getAuthorities(String role_user) {
         return Collections.singletonList(new SimpleGrantedAuthority(role_user));
-    }
+    }*/
 
 }
